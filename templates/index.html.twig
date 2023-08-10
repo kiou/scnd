@@ -1,0 +1,306 @@
+{% extends 'app/layout.html.twig' %}
+
+{% block content %}
+
+    {# En tête portail #}
+    <section class="section1">
+        <div class="inner">
+
+            <div class="owl-one owl-carousel owl-theme">
+                {% for header in headers %}
+                    <div>
+                        <img src="{{ asset('img/upload/' ~ header.image) }}">
+                        <div class="headerPortailSlide">
+                            <div>
+                                <h1>{{ header.title }}</h1>
+                                {% if header.contenu is not null %}
+                                    <div class="headerPortailContent">
+                                        {{ header.contenu|raw }}
+                                    </div>
+                                {% endif %}
+                                {% if header.lien is not null %}
+                                    <div class="headerPortailLien">
+                                        <a href="{{ header.lien|raw }}" class="btn purpule">En savoir +</a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <style>
+                {% for header in headers %}
+                    .owl-dots .owl-dot:nth-child({{ loop.index }}) {
+                        background: url({{ asset('img/miniature/' ~ header.image) }});
+                    }
+                {% endfor %}
+            </style>
+
+        </div>
+    </section>
+
+    {# Mot du président #}
+    <section class="section2">
+
+        <div class="inner">
+
+            <div class="portailPresident">
+
+                <div class="portailPresidentLeft">
+                    <div class="portailPresidentResume">
+                        <h2>{{ president.title }}</h2>
+                        <p class="viewDisplay" data-more="1">{{ president.resume }}</p>
+
+                        <div class="portailPresidentContent viewMore" data-more="1">
+                            {{president.content|raw}}
+                        </div>
+
+                        <a href="#" class="btn purpule btnMore" data-more="1">Lire la suite</a>
+                    </div>
+                </div>
+
+                <div class="portailPresidentRight">
+                    <div class="portailPresidentImage" style="background-image: url({{ asset('img/upload/' ~ president.image) }});">
+                        <div class="portailPresidentCategorie">
+                            {% if president.categorie == 'hommage' %}
+                                <img src="{{ asset('img/categorie-hommage.svg') }}">
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clear"></div>
+
+            </div>
+
+            <img src="{{ asset('img/back-logo-violet.svg') }}" class="logoParallax1">
+
+        </div>
+
+    </section>
+
+    {# Les établissements #}
+    <section class="section3">
+        <div class="inner">
+
+            <div class="titre center">
+                <h2>Découvrez nos établissements</h2>
+                <p>Lorem ipsum dolor sit amet consectetur. Non pharetra amet odio ornare. Quis sed vestibulum mollis risus ullamcorper viverra facilisi turpis. Erat sit nunc scelerisque erat malesuada massa justo dui.</p>
+            </div>
+
+            <div class="etablissements">
+
+                {% for etablissement in etablissements %}
+                    <div class="etablissement {{ etablissement.site }}">
+                        <div class="etablissementImg">
+                            <img src="{{ asset('img/upload/' ~ etablissement.image) }}">
+                        </div>
+
+                        <div class="etablissementLogo {{ etablissement.site }}">
+                            {% if etablissement.site == 'college' %}
+                                <img src="{{ asset('img/logo-college-du-sacre-coeur.svg' )}}">
+                            {% elseif etablissement.site == 'lycee' %}
+                                <img src="{{ asset('img/logo-lycee-du-sacre-coeur.svg' )}}">
+                            {% elseif etablissement.site == 'lyceepro' %}
+                                <img src="{{ asset('img/logo-lycee-des-metiers-notre-dame.svg' )}}">
+                            {% elseif etablissement.site == 'formation' %}
+                                <img src="{{ asset('img/logo-centre-de-formation-de-moniteurs-educateurs-notre-dame.svg' )}}">
+                            {% endif %}
+                        </div>
+
+                        <div class="etablissementLien {{ etablissement.site }}">
+                            {% if etablissement.site == 'college' %}
+                                <a href="{{ path('appcollege_index') }}">accéder à l'etablissement</a>
+                            {% elseif etablissement.site == 'lycee' %}
+                                <a href="{{ path('applycee_index') }}">accéder à l'etablissement</a>
+                            {% elseif etablissement.site == 'lyceepro' %}
+                                <a href="{{ path('applyceepro_index') }}">accéder à l'etablissement</a>
+                            {% elseif etablissement.site == 'formation' %}
+                                <a href="{{ path('appformation_index') }}">accéder à l'etablissement</a>
+                            {% endif %}
+                        </div>
+
+                        <div class="etablissementTitre">
+                            <h3>{{ etablissement.title }}</h3>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <div class="clear"></div>
+
+            </div>
+
+        </div>
+    </section>
+
+    {# baseline #}
+    <section class="section4">
+        <div class="inner">
+            <marquee>
+                <img src="{{ asset('img/baseline-marquee.png') }}">
+                <img src="{{ asset('img/baseline-marquee.png') }}">
+                <img src="{{ asset('img/baseline-marquee.png') }}">
+            </marquee>
+        </div>
+    </section>
+
+    {# Statistiques #}
+    <section class="section5">
+        <div class="inner">
+
+            <div class="statistiques">
+                {% for statistique in statistiques %}
+                    <div class="statistique">
+    
+                        <div class="statistiqueCategorie">
+                            {% if statistique.categorie == 'etablissement' %}
+                                <img src="{{ asset('img/categorie-etablissement.svg') }}">
+                            {% elseif statistique.categorie == 'classe' %}
+                                <img src="{{ asset('img/categorie-classe.svg') }}">
+                            {% elseif statistique.categorie == 'sport' %}
+                                <img src="{{ asset('img/categorie-sport.svg') }}">
+                            {% elseif statistique.categorie == 'education' %}
+                                <img src="{{ asset('img/categorie-education.svg') }}">
+                            {% endif %}
+                        </div>
+
+                        <div class="statistiqueChiffre">
+                            <p>{{ statistique.chiffre }}<p>
+                        </div>
+
+                        <div class="statistiqueContenu">
+                            <p>{{ statistique.contenu }}</p>
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+        <img src="/img/back-logo-violet.svg" class="logoParallax2">
+    </section>
+    
+    {# Actualités #}
+    <section class="section6">
+        <div class="inner">
+
+            <div class="titre link">
+                <div class="titreLeft">
+                    <h2>Toutes nos actus</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur. Vitae turpis adipiscing pellentesque in venenatis ut. Risus bibendum a massa turpis viverra morbi. Malesuada mattis varius duis euismod nisl sit ipsum. Congue ultricies.</p>
+                </div>
+
+                <div class="titreRight">
+                    <a href="#" class="btn purpule">voir les autres actus</a>
+                </div>
+            </div>
+
+            <div class="actualites">
+
+                <div class="actualiteLeft">
+                    
+                    <div class="actualite {{ lastActualite.site }}">
+                        <div class="actualiteImg">
+                            <img src="{{ asset('/img/miniature/' ~ lastActualite.image) }}">
+                        </div>
+
+                        <div class="actualiteContent">
+                            <div class="actualiteTopContent">
+                                <p>{{ get_site(lastActualite.site) }}</p>
+                                <span>Le {{ lastActualite.created|format_datetime('short', 'none', locale='fr')}}</span>
+                            </div>
+
+                            <h3>{{ lastActualite.title|u.truncate(70, '...' ) }}</h3>
+                            <p>{{ lastActualite.resume|u.truncate(200, '...' )}}</p>
+                        </div>
+
+                        <a href="" class="actualiteContentLink">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="18" viewBox="0 0 36 18" fill="none">
+                                <path d="M1.40625 10.4063L31.1877 10.4063L26.2543 15.3158C25.7038 15.8636 25.7017 16.754 26.2496 17.3045C26.7974 17.855 27.6879 17.8571 28.2383 17.3093L35.5863 9.99676C35.5868 9.99633 35.5871 9.99584 35.5876 9.99542C36.1366 9.44754 36.1384 8.55429 35.5877 8.00459C35.5872 8.00417 35.5868 8.00368 35.5864 8.00326L28.2385 0.690757C27.6881 0.143022 26.7976 0.14492 26.2497 0.695537C25.7018 1.24601 25.7039 2.13638 26.2544 2.68426L31.1877 7.59376L1.40625 7.59375C0.62958 7.59375 1.78379e-06 8.22333 1.71589e-06 9C1.64799e-06 9.77667 0.62958 10.4063 1.40625 10.4063Z"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="actualiteRight">
+
+                    {% for nextActualite in nextActualites %}
+
+                        <div class="actualite {{ nextActualite.site }}">
+                            <div class="actualiteImg">
+                                <img src="{{ asset('/img/miniature2/' ~ nextActualite.image) }}">
+                            </div>
+
+                            <div class="actualiteContent">
+                                <div class="actualiteTopContent">
+                                    <p>{{ get_site(nextActualite.site) }}</p>
+                                    <span>Le {{ nextActualite.created|format_datetime('short', 'none', locale='fr')}}</span>
+                                </div>
+
+                                <h3>{{ nextActualite.title|u.truncate(80, '...' ) }}</h3>
+                            </div>
+
+                            <a href="" class="actualiteContentLink">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="18" viewBox="0 0 36 18" fill="none">
+                                    <path d="M1.40625 10.4063L31.1877 10.4063L26.2543 15.3158C25.7038 15.8636 25.7017 16.754 26.2496 17.3045C26.7974 17.855 27.6879 17.8571 28.2383 17.3093L35.5863 9.99676C35.5868 9.99633 35.5871 9.99584 35.5876 9.99542C36.1366 9.44754 36.1384 8.55429 35.5877 8.00459C35.5872 8.00417 35.5868 8.00368 35.5864 8.00326L28.2385 0.690757C27.6881 0.143022 26.7976 0.14492 26.2497 0.695537C25.7018 1.24601 25.7039 2.13638 26.2544 2.68426L31.1877 7.59376L1.40625 7.59375C0.62958 7.59375 1.78379e-06 8.22333 1.71589e-06 9C1.64799e-06 9.77667 0.62958 10.4063 1.40625 10.4063Z"/>
+                                </svg>
+                            </a>
+
+                            <div class="clear"></div>
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+                <div class="clear"></div>
+
+            </div>
+
+        </div>
+    </section>
+
+    {# Visite virtuelle #}
+    <section class="section7">
+        <div class="inner">
+            <h2>Visite 360° virtuelle des établissements</h2>
+
+            <div class="section7Btn">
+                <a href="" class="btn btnSite college">college</a>
+                <a href="" class="btn btnSite lycee">lycée</a>
+                <a href="" class="btn btnSite lyceepro">lycée des métiers</a>
+                <a href="" class="btn btnSite formation">centre de formation</a>
+            </div>
+
+            <div class="logo360 portail">
+                <img src="{{ asset('/img/logo-360.svg') }}">
+            </div>
+        </div>
+    </section>
+
+    {# Contact #}
+    <section class="section8">
+
+        <div class="inner">
+
+            <div class="contactTop">
+                <div class="titre center blanc">
+                    <h2>Contactez-nous</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur. Blandit netus ut ultrices semper. In enim sed morbi nulla nec ut id. Non mollis at mollis velit pharetra est. Feugiat a ornare volutpat integer ornare. Sed vitae tincidunt adipiscing urna. Aliquam erat nunc in erat vitae.</p>
+                </div>
+            </div>
+
+            <div class="contactForm portail">
+                {{ render(controller('App\\Controller\\ContactController::index')) }}   
+                
+                <img src="/img/back-logo-violet.svg" class="logoParallax3">
+            </div>
+            
+        </div>
+        
+    </section>
+
+{% endblock %} 

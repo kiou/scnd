@@ -1,0 +1,23 @@
+app_index:
+    path: /
+    controller: App\Controller\GlobalController::index
+
+app_logout:
+    path: /logout
+
+
+appcollege_index:
+    path: /college
+    controller: App\Controller\GlobalCollegeController::index
+
+applycee_index:
+    path: /lycee
+    controller: App\Controller\GlobalLyceeController::index
+
+applyceepro_index:
+    path: /lyceepro
+    controller: App\Controller\GlobalLyceeproController::index
+
+appformation_index:
+    path: /formation
+    controller: App\Controller\GlobalFormationController::index

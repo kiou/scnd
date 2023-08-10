@@ -1,0 +1,71 @@
+<footer class="footer portail">
+    <div class="inner">
+
+        <div class="footerLogoPortail">
+            <img src="{{ asset('img/logo-notre-dame-sacre-coeur.svg')}}">
+        </div>
+
+        <div class="titre center">
+            <h2>{{ etablissement.title }}</h2>
+            <p>Sacré Coeur Notre Dame est un ensemble scolaire couvrant les classes de la maternelle au lycée.C'est aussi un lycée pro et un centre de formation</p><br>
+            <p><em>Établissement privé sous contrat avec l'État, habilité à percevoir les bourses nationales et départementales</em></p>
+        </div>
+
+        <div class="footerLinks">
+            <div class="footerLink col1">
+                <h3>Liens utiles</h3>
+                <ul>
+                    <li><a href="">actualités</a></li>
+                    <li><a href="">classes</a></li>
+                    <li><a href="">activités</a></li>
+                    <li><a href="">inscription</a></li>
+                </ul>
+            </div>
+
+            <div class="footerLink col2 footerReseau">
+                <h3>Suivez-nous</h3>
+                <a href="" target="_blank"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                <a href="" target="_blank"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+            </div>
+
+            <div class="footerLink col3">
+                <h3>Nos partenaires</h3>
+                <div class="partenaires">
+                    {% for partenaire in partenaires %}
+                        <div class="partenaire">
+                            {% if partenaire.lien is empty %}
+                                <img src="{{ asset('/img/upload/' ~ partenaire.image) }}">
+                            {% else %}
+                                <a href="{{ partenaire.lien}}" target="_blank">
+                                    <img src="{{ asset('/img/upload/' ~ partenaire.image) }}">
+                                </a>
+                            {% endif %}
+                            <p>{{ partenaire.title }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="footerEtablissementsTitre">
+            <h3>Nos etablissements</h3>
+        </div>
+        <div class="footerEtablissements">
+            <div class="footerEtablissement">
+                <img src="{{ asset('img/logo-lycee-du-sacre-coeur.svg') }}">
+                <p>Lycée du Sacré Coeur</p>
+            </div>
+
+            <div class="footerEtablissement">
+                <img src="{{ asset('img/logo-lycee-des-metiers-notre-dame.svg') }}">
+                <p>Lycée des métiers Notre Dame</p>
+            </div>
+
+            <div class="footerEtablissement">
+                <img src="{{ asset('img/logo-centre-de-formation-de-moniteurs-educateurs-notre-dame.svg') }}">
+                <p>Centre de formation de moniteurs-éducateurs Notre Dame</p>
+            </div>
+        </div>
+
+    </div>
+</footer>

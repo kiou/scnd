@@ -1,0 +1,273 @@
+{% extends 'app/layoutcollege.html.twig' %}
+
+{% block content %}
+
+    {# En tête #}
+    <section class="section1">
+        <div class="inner">
+
+            <div class="headerEtablissement">
+                <img src="{{ asset('img/upload/' ~ header.image) }}">
+                <div class="headerSlide">
+                    <div>
+                        <h1>{{ header.title }}</h1>
+                        {% if header.contenu is not null %}
+                            <div class="headerContent">
+                                {{ header.contenu|raw }}
+                            </div>
+                        {% endif %}
+                        {% if header.lien is not null %}
+                            <div class="headerLien">
+                                <a href="{{ header.lien|raw }}" class="btn blue">En savoir +</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            {# Informations établissement #}
+            <div class="etablissementInfos">
+                <h3>Coordonnées</h3>
+                <p><b>{{ etablissement.title }} - {{ etablissement.adresse }}</b></p>
+                <p><i class="fas fa-phone-volume"></i> <a href="tel:{{ etablissement.telephone }}">{{ etablissement.telephone }}</a> | <i class="fas fa-globe"></i> <a href="mailto:{{ etablissement.email }}">{{ etablissement.email }}</a></p>
+                {% if etablissement.facebook is not empty %}
+                    <p><i class="fab fa-facebook"></i> <a href="{{ etablissement.facebook }}" target="_blank">Suivez nous sur Facebook</a></p>
+                {% endif %}
+            </div>
+
+        </div>
+    </section>
+
+    {# Présentation #}
+    <section class="section2">
+        <div class="inner">
+
+            <div class="presentationLeft">
+                <h2>{{ presentation.title }}</h2>
+                {{ presentation.resume|raw }}
+                <div class="presentationViewBtn">
+                    <a href="" class="btn blue">En savoir +</a>
+                </div>
+            </div>
+
+            <div class="presentationRight">
+                <img src="{{ asset('img/upload/' ~ presentation.image1) }}" class="presentationImg1">
+                <img src="{{ asset('img/upload/' ~ presentation.image2) }}" class="presentationImg2">
+            </div>
+
+            <div class="clear"></div>
+
+            <img src="/img/back-logo-bleu.svg" class="logoParallax1">
+        
+        </div>
+    </section>
+
+    {# Activités #}
+    <section class="section3">
+        <div class="inner">
+
+            <div class="activites">
+                {% for activite in activites %}
+
+                    <div class="activite">
+                        <div class="activiteLogo">
+                            <img src="/img/logo-college-du-sacre-coeur.svg">
+                        </div>
+
+                        <div class="activiteImg">
+                            <img src="{{ asset('/img/miniature/' ~ activite.image) }}">
+                        </div>
+
+                        <div class="activiteLien">
+                            <a href="#">accéder à l'activité</a>
+                        </div>
+
+                        <div class="activiteTitre">
+                            <h3>{{ activite.title }}</h3>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+                <div class="clear"></div>
+            </div>
+
+            <div class="titre">
+                <h2>Les activités une autre façon d'apprendre</h2>
+                <p>Nous voulons que les enfants travaillent et plus précisément que les jeunes qui nous sont confiés fassent leur maximum, pour qu'à aucun moment de leur vie ils ne regrettent un temps scolaire insuffisamment optimisé.</p>
+                <p>Nous voulons que nos jeunes soient heureux à l'école : plaisir d'apprendre, plaisir de développer des connaissances, plaisir d'affiner leur culture, plaisir d'avoir de bonnes notes, de réussir, de choisir leur orientation puis leur métier.</p>
+                <p>Nous voulons qu'ils développent des qualités chrétiennes et humaines significatives : la politesse, le respect de soi, le respect des autres, de notre environnement.</p>
+                <p>Dans le monde professionnel, dans la société plus globalement, il nous semble inconcevable d'avoir seulement de grandes compétences, il faut un maillage étroit avec un savoir être et un savoir vivre</p>
+            </div>
+                
+        </div>
+    </section>
+
+    {# baseline #}
+    <section class="section4">
+        <div class="inner">
+            <marquee>
+                <img src="{{ asset('img/baseline-marquee.png') }}">
+                <img src="{{ asset('img/baseline-marquee.png') }}">
+                <img src="{{ asset('img/baseline-marquee.png') }}">
+            </marquee>
+        </div>
+    </section>
+
+    {# Statistiques #}
+    <section class="section5">
+        <div class="inner">
+
+            <div class="statistiques">
+                {% for statistique in statistiques %}
+                    <div class="statistique">
+    
+                        <div class="statistiqueCategorie">
+                            {% if statistique.categorie == 'etablissement' %}
+                                <img src="{{ asset('img/categorie-etablissement.svg') }}">
+                            {% elseif statistique.categorie == 'classe' %}
+                                <img src="{{ asset('img/categorie-classe.svg') }}">
+                            {% elseif statistique.categorie == 'sport' %}
+                                <img src="{{ asset('img/categorie-sport.svg') }}">
+                            {% elseif statistique.categorie == 'education' %}
+                                <img src="{{ asset('img/categorie-education.svg') }}">
+                            {% endif %}
+                        </div>
+
+                        <div class="statistiqueChiffre">
+                            <p>{{ statistique.chiffre }}<p>
+                        </div>
+
+                        <div class="statistiqueContenu">
+                            <p>{{ statistique.contenu }}</p>
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+        <img src="/img/back-logo-bleu.svg" class="logoParallax2">
+    </section>
+
+    {# Actualités #}
+    <section class="section6">
+        <div class="inner">
+
+            <div class="titre link">
+                <div class="titreLeft">
+                    <h2>Toutes nos actus</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur. Vitae turpis adipiscing pellentesque in venenatis ut. Risus bibendum a massa turpis viverra morbi. Malesuada mattis varius duis euismod nisl sit ipsum. Congue ultricies.</p>
+                </div>
+
+                <div class="titreRight">
+                    <a href="#" class="btn blue">voir les autres actus</a>
+                </div>
+            </div>
+
+            <div class="actualites">
+
+                <div class="actualiteLeft">
+                    
+                    <div class="actualite">
+                        <div class="actualiteImg">
+                            <img src="{{ asset('/img/miniature/' ~ lastActualite.image) }}">
+                        </div>
+
+                        <div class="actualiteContent">
+                            <div class="actualiteTopContent">
+                                <p>{{ get_site(lastActualite.site) }}</p>
+                                <span>Le {{ lastActualite.created|format_datetime('short', 'none', locale='fr')}}</span>
+                            </div>
+
+                            <h3>{{ lastActualite.title|u.truncate(70, '...' ) }}</h3>
+                            <p>{{ lastActualite.resume|u.truncate(200, '...' )}}</p>
+                        </div>
+
+                        <a href="" class="actualiteContentLink">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="18" viewBox="0 0 36 18" fill="none">
+                                <path d="M1.40625 10.4063L31.1877 10.4063L26.2543 15.3158C25.7038 15.8636 25.7017 16.754 26.2496 17.3045C26.7974 17.855 27.6879 17.8571 28.2383 17.3093L35.5863 9.99676C35.5868 9.99633 35.5871 9.99584 35.5876 9.99542C36.1366 9.44754 36.1384 8.55429 35.5877 8.00459C35.5872 8.00417 35.5868 8.00368 35.5864 8.00326L28.2385 0.690757C27.6881 0.143022 26.7976 0.14492 26.2497 0.695537C25.7018 1.24601 25.7039 2.13638 26.2544 2.68426L31.1877 7.59376L1.40625 7.59375C0.62958 7.59375 1.78379e-06 8.22333 1.71589e-06 9C1.64799e-06 9.77667 0.62958 10.4063 1.40625 10.4063Z"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="actualiteRight">
+
+                    {% for nextActualite in nextActualites %}
+
+                        <div class="actualite {{ nextActualite.site }}">
+                            <div class="actualiteImg">
+                                <img src="{{ asset('/img/miniature2/' ~ nextActualite.image) }}">
+                            </div>
+
+                            <div class="actualiteContent">
+                                <div class="actualiteTopContent">
+                                    <p>{{ get_site(nextActualite.site) }}</p>
+                                    <span>Le {{ nextActualite.created|format_datetime('short', 'none', locale='fr')}}</span>
+                                </div>
+
+                                <h3>{{ nextActualite.title|u.truncate(80, '...' ) }}</h3>
+                            </div>
+
+                            <a href="" class="actualiteContentLink">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="18" viewBox="0 0 36 18" fill="none">
+                                    <path d="M1.40625 10.4063L31.1877 10.4063L26.2543 15.3158C25.7038 15.8636 25.7017 16.754 26.2496 17.3045C26.7974 17.855 27.6879 17.8571 28.2383 17.3093L35.5863 9.99676C35.5868 9.99633 35.5871 9.99584 35.5876 9.99542C36.1366 9.44754 36.1384 8.55429 35.5877 8.00459C35.5872 8.00417 35.5868 8.00368 35.5864 8.00326L28.2385 0.690757C27.6881 0.143022 26.7976 0.14492 26.2497 0.695537C25.7018 1.24601 25.7039 2.13638 26.2544 2.68426L31.1877 7.59376L1.40625 7.59375C0.62958 7.59375 1.78379e-06 8.22333 1.71589e-06 9C1.64799e-06 9.77667 0.62958 10.4063 1.40625 10.4063Z"/>
+                                </svg>
+                            </a>
+
+                            <div class="clear"></div>
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+                <div class="clear"></div>
+
+            </div>
+
+        </div>
+    </section>
+
+    {# Visite virtuelle #}
+    <section class="section7">
+        <div class="inner">
+            <h2>Visite 360° virtuelle</h2>
+
+            <div class="section7Btn">
+                <a href="" class="btn btnSite">collège</a>
+            </div>
+
+            <div class="logo360">
+                <img src="{{ asset('/img/logo-360.svg') }}">
+            </div>
+        </div>
+    </section>
+
+    {# Contact #}
+    <section class="section8">
+
+        <div class="inner">
+
+            <div class="contactTop">
+                <div class="titre center blanc">
+                    <h2>Contactez-nous</h2>
+                    <p><b>{{ etablissement.title }} - {{ etablissement.adresse }}</b></p>
+                    <p class="contactTopTel"><i class="fas fa-phone-volume"></i> <a href="tel:{{ etablissement.telephone }}">{{ etablissement.telephone }}</a></p>
+                </div>
+            </div>
+
+            <div class="contactForm">
+                {{ render(controller('App\\Controller\\ContactController::index', {selection:'college'} )) }}  
+                
+                <img src="/img/back-logo-bleu.svg" class="logoParallax3">
+            </div>
+            
+        </div>
+        
+    </section>
+
+{% endblock %} 

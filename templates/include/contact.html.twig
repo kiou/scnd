@@ -1,0 +1,66 @@
+<div class="contactFormInclude">
+{{ form_start(form) }}
+
+    {{ form_errors(form) }}
+
+    <div class="contactFormIncludeLeft">
+
+        <select name="{{ field_name(form.etablissement) }}">
+            {% for label, value in field_choices(form.etablissement) %}
+
+                {% if selection == value %}
+                    <option value="{{ value }}" selected disabled >{{ label }}</option>
+                {% else %}
+                    <option value="{{ value }}">{{ label }}</option>
+                {% endif %}
+  
+            {% endfor %}
+        </select>
+
+        <div class="form-error">
+            {{ form_errors(form.nom) }}
+        </div>
+        {{ form_widget(form.nom) }}
+
+        <div class="form-error">
+            {{ form_errors(form.email) }}
+        </div>
+        {{ form_widget(form.email) }}
+
+    </div>
+
+    <div class="contactFormIncludeRight">
+
+        <div class="form-error">
+            {{ form_errors(form.sujet) }}
+        </div>
+        {{ form_widget(form.sujet) }}
+
+        <div class="form-error">
+            {{ form_errors(form.prenom) }}
+        </div>
+        {{ form_widget(form.prenom) }}
+
+        <div class="form-error">
+            {{ form_errors(form.telephone) }}
+        </div>
+        {{ form_widget(form.telephone) }}
+
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="form-error">
+        {{ form_errors(form.message) }}
+    </div>
+    {{ form_widget(form.message) }}
+
+    <div class="formsend">
+        {{ form_widget(form.Envoyer) }}
+    </div>
+
+    {{ form_rest(form) }}
+
+{{ form_end(form) }}
+
+</div>
